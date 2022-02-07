@@ -28,7 +28,7 @@ let yOffset = 50;
 let numSquares = 7;
 let squareHeight = 20;
 let squareWidth = 15;
-
+ 
 function setup(){
     createCanvas(500,500);
     background(100);
