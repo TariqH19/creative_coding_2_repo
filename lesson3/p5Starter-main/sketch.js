@@ -1,4 +1,4 @@
-//Bar chart using loops and translations
+//Bar chart using loops and translations!
 
 let data = [345,30,120,390,200,100];
 let margin = 20;
