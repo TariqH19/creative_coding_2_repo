@@ -1,6 +1,6 @@
 //Bar chart using loops and translations!
 
-let data = [345,30,300];
+let data = [345,30,300,288,80,180];
 let sortedData;
 let colors;
 let margin = 30;
@@ -32,16 +32,13 @@ function draw(){
     strokeWeight(1);
     line(0,0,400,0);
 
-    // rect(20,0,20,-100);
-    //rect(55,0,20,-320);
-    //rect(90,0,20,-320);
     translate(margin,0);
     drawBars();
 }
 
 function drawBars(){
     for (let i = 0; i < data.length; i++) {
-        fill(colors[i]);
+        fill(colors[i%colors.length]);
         strokeWeight(0);
         rect(i*(barWidth+spacing),0,barWidth,-data[i]);        
     }
