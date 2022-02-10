@@ -1,6 +1,6 @@
 //Bar chart using loops and translations!
 
-let data = [1200,8600,2200,3100,2200,250,10];
+let data = [1200,8600,2200,3100,2200,2550,1000];
 let scalledData = [];
 let maxValue;
 
@@ -42,8 +42,6 @@ function draw(){
 
     push();
     translate(50,450);
-    textSize(12);
-    textAlign(RIGHT,CENTER);
 
     //y Axis
     strokeWeight(1);
@@ -64,14 +62,21 @@ function draw(){
 }
 
 function drawBars(){
+    textSize(12);
+    textAlign(LEFT,BOTTOM);
     for (let i = 0; i < scalledData.length; i++) {
         fill(colors[i%colors.length]);
         strokeWeight(0);
-        rect(i*(barWidth+spacing),0,barWidth,-scalledData[i]);        
+        rect(i*(barWidth+spacing),0,barWidth,-scalledData[i]);
+        noStroke();
+        fill(0);
+        text("text",i*(barWidth+spacing),-scalledData[i]);        
     }
 }
 
 function drawTicks(){
+    textSize(12);
+    textAlign(RIGHT,CENTER);
     for (let i = 0; i <= numTicks; i++) {
         stroke(0);
         strokeWeight(1);
