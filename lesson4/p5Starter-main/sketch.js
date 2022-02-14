@@ -70,7 +70,7 @@ function drawBars(){
         rect(i*(barWidth+spacing),0,barWidth,-scalledData[i]);
         noStroke();
         fill(0);
-        text("text",i*(barWidth+spacing),-scalledData[i]);        
+        text("Text",i*(barWidth+spacing),-scalledData[i]);        
     }
 }
 
