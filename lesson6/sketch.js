@@ -68,7 +68,10 @@ function draw() {
     translate(0, 0);
     drawAxis();
     pop();
-
+    fill(255);
+    textSize(32);
+    textAlign(CENTER, TOP);
+    text("Amount of fruit sold in 24hrs", width / 2, 20);
 
 }
 
