@@ -71,7 +71,7 @@ function drawAxis() {
     //y Axis
     strokeWeight(1);
     stroke(255);
-    line(0, 0, 0, -chartWidth);
+    line(0, 0, 0, -chartHeight);
     //x Axis
     strokeWeight(1);
     stroke(255);
