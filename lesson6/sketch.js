@@ -1,6 +1,5 @@
 //Bar chart using loops and translations!
 
-//let data = [1200, 8600, 2200, 3100, 2200, 2550, 1000];
 //To access an element in an array use the array name and the index number to access the properties of the object use dot notation
 let data = [
     { value: 32, label: "Oranges" },
@@ -17,8 +16,6 @@ let showLabels = true;
 let rotateLabels = true;
 let showValues = true;
 
-//let sortData = true;
-//let sortedData;
 let colors;
 let margin = 30;
 let spacing = 15;
@@ -29,6 +26,7 @@ let remainingSpace = chartHeight - (margin * 2) - (spacing * (data.length - 1));
 let barWidth = remainingSpace / data.length;
 
 //Variables for ticks
+let tickWeight = 1;
 let numTicks = 10;
 let tickLength = 5;
 let tickSpace = chartHeight / numTicks;
@@ -39,9 +37,6 @@ function setup() {
     createCanvas(500, 500);
     background(0);
     colors = [color('#F3646A'), color('#F68F6A'), color('#FAB666'), color('#FFE066')];
-    // if (sortData == true) {
-    //     sort(data)
-    // }
 
     let listValues = data.map(function(x) { return x.value });
     maxValue = max(listValues);
@@ -71,7 +66,7 @@ function draw() {
     fill(255);
     textSize(32);
     textAlign(CENTER, TOP);
-    text("Amount of fruit sold in 24hrs", width / 2, 20);
+    text("Amount of fruit sold in 24hrs", width / 2, 10);
 
 }
 
@@ -79,7 +74,7 @@ function drawAxis() {
     //y Axis
     strokeWeight(1);
     stroke(255);
-    line(0, 0, 0, -chartWidth);
+    line(0, 0, 0, -chartHeight);
     //x Axis
     strokeWeight(1);
     stroke(255);
@@ -134,11 +129,11 @@ function drawTicks() {
     textAlign(CENTER, CENTER);
     for (let i = 0; i <= numTicks; i++) {
         stroke(255, 100);
-        strokeWeight(2);
+        strokeWeight(tickWeight);
         line(i * tickSpace, 0, i * tickSpace, -tickLength);
 
         stroke(255, 40);
-        strokeWeight(1);
+        strokeWeight(tickWeight);
         line(i * tickSpace, 0, i * tickSpace, -chartHeight);
 
         noStroke();
