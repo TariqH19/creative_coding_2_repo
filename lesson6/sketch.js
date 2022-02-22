@@ -15,26 +15,11 @@ function setup() {
     createCanvas(500, 500);
     background(0);
     colors = [color('#F3646A'), color('#F68F6A'), color('#FAB666'), color('#FFE066')];
-    barChart = new horizontalBarChart(data);
+    barChart = new HorizontalBarChart(data);
 }
 
 function draw() {
     background(50);
-    // push();
-    // translate(posX, 450);
-    // drawTicks();
-    // pop();
-
-    // push();
-    // translate(posX, posX + margin);
-    // drawBars();
-    // pop();
-
-    // push();
-    // translate(posX, posY);
-    // translate(0, 0);
-    // drawAxis();
-    // pop();
     barChart.render();
     barChart.updateVals();
 }

@@ -15,6 +15,13 @@ let data2 = [
     { value: 162, label: "Pears" }
 ];
 
+let data3 = [
+    { value: [232, 222, 432], label: ["Oranges", "Apples", "Pears"] },
+    { value: [332, 222, 132], label: ["Oranges", "Apples", "Pears"] },
+    { value: [432, 222, 332], label: ["Oranges", "Apples", "Pears"] },
+    { value: [132, 282, 102], label: ["Oranges", "Apples", "Pears"] }
+];
+
 let colors;
 let barChart01;
 let barChart02;
@@ -38,4 +45,7 @@ function draw() {
     barChart03.render();
     barChart03.updateVals();
     barChart03.posY = 900;
+    // barChart04.render();
+    // barChart04.updateVals();
+    // barChart04.posY = 900;
 }
