@@ -89,7 +89,7 @@ class BarChart {
             if (this.showLabels) {
                 noStroke();
                 fill(255);
-                textSize(12);
+                textSize(14);
                 textAlign(CENTER, BOTTOM);
                 text(this.data[i].label, i * (this.barWidth + this.spacing) + this.barWidth / 2, 25);
             }

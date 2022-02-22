@@ -100,7 +100,7 @@ class horizontalBarChart {
                     push();
                     noStroke();
                     fill(255);
-                    textSize(12);
+                    textSize(14);
                     textAlign(CENTER, BOTTOM);
                     translate(-20, ((this.barWidth + this.spacing) * i) + this.barWidth / 2);
                     rotate(PI / 2);
