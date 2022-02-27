@@ -3,7 +3,8 @@ class HorizontalBarChart {
         this.data = _data;
         this.posX = 50;
         this.posY = 450;
-        this.fontSize = 14;
+        this.valueFontSize = 12;
+        this.labelFontSize = 14;
         this.tickWeight = 1;
         this.numTicks = 10;
         this.tickLength = 5;
@@ -21,6 +22,12 @@ class HorizontalBarChart {
         this.maxValue;
         this.updateVals();
     }
+    drawTitle() {
+        textSize(18);
+        noStroke();
+        fill(255);
+        text("Chart Title", this.chartWidth / 2, -this.chartHeight - 15);
+    }
     updateVals() {
         this.remainingSpace = this.chartHeight - (this.margin * 2) - (this.spacing * (this.data.length - 1));
         this.barHeight = this.remainingSpace / this.data.length;
@@ -32,16 +39,16 @@ class HorizontalBarChart {
     render() {
         push();
         translate(this.posX, this.posY);
+        this.drawTitle();
         this.drawAxis();
         this.drawTicks();
-
         this.drawBars();
 
         pop();
     }
     drawTicks() {
         //translate(this.posX, this.posY);
-        textSize(this.textSize);
+        textSize(this.valueFontSize);
         textAlign(CENTER, CENTER);
         for (let i = 0; i <= this.numTicks; i++) {
             stroke(255, 100);
@@ -49,7 +56,7 @@ class HorizontalBarChart {
             line(i * this.tickSpace, 0, i * this.tickSpace, this.tickLength);
 
             stroke(255, 40);
-            strokeWeight(this.tickWeight);
+            strokeWeight(1);
             line(i * this.tickSpace, 0, i * this.tickSpace, -this.chartHeight);
 
             noStroke();
@@ -85,7 +92,7 @@ class HorizontalBarChart {
             if (this.showValues) {
                 noStroke();
                 fill(255);
-                textSize(this.textSize);
+                textSize(this.valueFontSize);
                 textAlign(LEFT, TOP);
                 text(this.data[i].value, this.scaledData(this.data[i].value) + 5, -i * (this.barHeight + this.spacing) + -this.barHeight / 2);
             }
@@ -95,7 +102,7 @@ class HorizontalBarChart {
                     push();
                     noStroke();
                     fill(255);
-                    textSize(this.textSize);
+                    textSize(this.labelFontSize);
                     textAlign(CENTER, BOTTOM);
                     translate(-20, -((this.barHeight + this.spacing) * i) + -this.barHeight / 2);
                     rotate(PI / 2);
@@ -105,7 +112,7 @@ class HorizontalBarChart {
 
                     noStroke();
                     fill(255);
-                    textSize(this.textSize);
+                    textSize(this.labelFontSize);
                     textAlign(RIGHT, BOTTOM);
                     text(this.data[i].label, 0, i * (this.barHeight + this.spacing) + this.barHeight / 2);
                 }

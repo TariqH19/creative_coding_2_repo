@@ -18,6 +18,13 @@ class BarChart {
         this.maxValue;
         this.updateVals();
     }
+    drawTitle() {
+        textSize(18);
+        textAlign(CENTER, CENTER);
+        noStroke();
+        fill(255);
+        text("Chart Title", this.chartWidth / 2, -this.chartHeight);
+    }
     updateVals() {
         this.remainingSpace = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
         this.barWidth = this.remainingSpace / this.data.length;
@@ -29,6 +36,7 @@ class BarChart {
     render() {
         push();
         translate(this.posX, this.posY);
+        this.drawTitle();
         this.drawTicks();
         this.drawBars();
         this.drawAxis();
