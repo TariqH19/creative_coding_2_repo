@@ -32,9 +32,11 @@ class HorizontalBarChart {
     render() {
         push();
         translate(this.posX, this.posY);
-        this.drawTicks();
-        this.drawBars();
         this.drawAxis();
+        this.drawTicks();
+
+        this.drawBars();
+
         pop();
     }
     drawTicks() {
@@ -44,7 +46,7 @@ class HorizontalBarChart {
         for (let i = 0; i <= this.numTicks; i++) {
             stroke(255, 100);
             strokeWeight(this.tickWeight);
-            line(i * this.tickSpace, 0, i * this.tickSpace, -this.tickLength);
+            line(i * this.tickSpace, 0, i * this.tickSpace, this.tickLength);
 
             stroke(255, 40);
             strokeWeight(this.tickWeight);
@@ -53,7 +55,7 @@ class HorizontalBarChart {
             noStroke();
             fill(255, 100);
 
-            text(i * this.tickIncrement, i * this.tickSpace, 10);
+            text(i * this.tickIncrement, i * this.tickSpace, 15);
         }
     }
     drawAxis() {

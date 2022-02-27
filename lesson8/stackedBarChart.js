@@ -3,7 +3,7 @@ class StackedBarChart {
         this.data = _data;
         this.posX = 50;
         this.posY = 450;
-        this.showLabels = true;
+        this.showLabels = false;
         this.showValues = true;
         this.margin = 30;
         this.spacing = 15;
@@ -25,6 +25,7 @@ class StackedBarChart {
         let listValues = this.data.map(function(x) { return x.value });
         this.maxValue = max(listValues);
         this.tickIncrement = int(this.maxValue / this.numTicks);
+        let barHeight = this.chartHeight / this.data.length;
     }
     render() {
         push();
@@ -72,28 +73,29 @@ class StackedBarChart {
 
     drawBars() {
         translate(this.margin, 0);
+        for (let j = 0; j < this.data.length; j++) {
+            for (let i = 0; i < this.data.length; i++) {
+                fill(colors[i % colors.length]);
+                strokeWeight(0);
+                rect(i * (this.barWidth + this.spacing), -j * (this.barWidth - this.margin), this.barWidth, (-this.data[i].value));
 
-        for (let i = 0; i < this.data.length; i++) {
-            fill(colors[i % colors.length]);
-            strokeWeight(0);
-            rect(i * (this.barWidth + this.spacing), 0, this.barWidth, this.scaledData(-this.data[i].value));
+                if (this.showValues) {
+                    noStroke();
+                    fill(255);
+                    textSize(12);
+                    textAlign(CENTER, BOTTOM);
+                    text(this.data[i].value, i * (this.barWidth + this.spacing) + this.barWidth / 2, this.scaledData(-this.data[i].value) - 3);
+                }
 
-            if (this.showValues) {
-                noStroke();
-                fill(255);
-                textSize(12);
-                textAlign(CENTER, BOTTOM);
-                text(this.data[i].value, i * (this.barWidth + this.spacing) + this.barWidth / 2, this.scaledData(-this.data[i].value) - 3);
+                if (this.showLabels) {
+                    noStroke();
+                    fill(255);
+                    textSize(14);
+                    textAlign(CENTER, BOTTOM);
+                    text(this.data[i].label, i * (this.barWidth + this.spacing) + this.barWidth / 2, 25);
+                }
+
             }
-
-            if (this.showLabels) {
-                noStroke();
-                fill(255);
-                textSize(14);
-                textAlign(CENTER, BOTTOM);
-                text(this.data[i].label, i * (this.barWidth + this.spacing) + this.barWidth / 2, 25);
-            }
-
         }
     }
 }

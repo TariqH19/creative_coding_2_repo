@@ -9,23 +9,29 @@ let data = [
 ];
 
 let data2 = [
-    { value: 232, label: "Oranges" },
-    { value: 222, label: "Apples" },
-    { value: 432, label: "Bananas" },
-    { value: 162, label: "Pears" }
+    { value: 20, label: "Oranges" },
+    { value: 30, label: "Apples" },
+    { value: 10, label: "Bananas" },
+    { value: 40, label: "Pears" }
 ];
 
 let data3 = [
-    { value: [232, 222, 432], label: ["Oranges", "Apples", "Pears"] },
-    { value: [332, 222, 132], label: ["Oranges", "Apples", "Pears"] },
-    { value: [432, 222, 332], label: ["Oranges", "Apples", "Pears"] },
-    { value: [132, 282, 102], label: ["Oranges", "Apples", "Pears"] }
+    { value: 100 },
+    { value: 100 },
+    { value: 100 },
+    { value: 100 },
+];
+
+let data4 = [
+    { value: [20, 20, 20, 20], label: ["Oranges", "Apples", "Pears"] },
+
 ];
 
 let colors;
 let barChart01;
 let barChart02;
 let barChart03;
+let barChart04;
 
 function setup() {
     createCanvas(1000, 950);
@@ -33,19 +39,26 @@ function setup() {
     barChart01 = new BarChart(data);
     barChart02 = new BarChart(data2);
     barChart03 = new HorizontalBarChart(data);
+    barChart04 = new StackedBarChart(data2);
 }
 
 function draw() {
     background(50);
     barChart01.render();
     barChart01.updateVals();
-    barChart02.render();
-    barChart02.updateVals();
-    barChart02.posX = 550;
+    // barChart02.render();
+    // barChart02.updateVals();
+    // barChart02.posX = 550;
     barChart03.render();
     barChart03.updateVals();
     barChart03.posY = 900;
-    // barChart04.render();
-    // barChart04.updateVals();
-    // barChart04.posY = 900;
+    barChart04.render();
+    barChart04.updateVals();
+    barChart04.posX = 550;
+    barChart04.posY = 900;
 }
+let total = 0;
+for (let i = 0; i < data.length; i++) {
+    total += data2[i].value;
+}
+console.log(total);
