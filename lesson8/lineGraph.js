@@ -1,4 +1,4 @@
-class StackedBarChart {
+class BarChart {
     constructor(_data) {
         this.data = _data;
         this.posX = 50;
@@ -19,16 +19,14 @@ class StackedBarChart {
         this.tickSpace;
         this.tickIncrement;
         this.maxValue;
-        this.total = [];
         this.updateVals();
-
     }
     drawTitle() {
         textSize(18);
         textAlign(CENTER, CENTER);
         noStroke();
         fill(255);
-        text("Chart Title", this.chartWidth / 2, -this.chartHeight - 15);
+        text("Chart Title", this.chartWidth / 2, -this.chartHeight - 25);
     }
     updateVals() {
         this.remainingSpace = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
@@ -37,28 +35,19 @@ class StackedBarChart {
         let listValues = this.data.map(function(x) { return x.value });
         this.maxValue = max(listValues);
         this.tickIncrement = int(this.maxValue / this.numTicks);
-        let sumOfValues;
-        for (let i = 0; i < this.data.length; i++) {
-            sumOfValues = this.data[i].value.reduce(
-                (prevValue, curValue) =>
-                this.total[i] = prevValue + curValue);
-
-        }
-        this.maxValue = max(this.total);
-        console.log(this.maxValue);
     }
     render() {
         push();
         translate(this.posX, this.posY);
         this.drawTitle();
-        this.drawAxis();
         this.drawTicks();
         this.drawBars();
+        this.drawAxis();
         pop();
     }
 
     drawTicks() {
-        textSize(12);
+        textSize(this.valueFontSize);
         textAlign(RIGHT, CENTER);
         for (let i = 0; i <= this.numTicks; i++) {
             stroke(255, 100);
@@ -94,13 +83,16 @@ class StackedBarChart {
 
     drawBars() {
         translate(this.margin, 0);
-        for (let i = 0; i < this.data.length; i++) {
 
+        for (let i = 0; i < this.data.length; i++) {
+            fill(colors[i % colors.length]);
+            strokeWeight(0);
+            rect(i * (this.barWidth + this.spacing), 0, this.barWidth, this.scaledData(-this.data[i].value));
 
             if (this.showValues) {
                 noStroke();
                 fill(255);
-                textSize(this.labelFontSize);
+                textSize(this.valueFontSize);
                 textAlign(CENTER, BOTTOM);
                 text(this.data[i].value, i * (this.barWidth + this.spacing) + this.barWidth / 2, this.scaledData(-this.data[i].value) - 3);
             }
@@ -111,17 +103,14 @@ class StackedBarChart {
                 textSize(this.labelFontSize);
                 textAlign(CENTER, BOTTOM);
                 text(this.data[i].label, i * (this.barWidth + this.spacing) + this.barWidth / 2, 25);
-            }
+            } else {
 
-            push();
-            for (let j = 0; j < this.data[i].value.length; j++) {
-                fill(colors[j % colors.length]);
-                stroke(0);
-                strokeWeight(0);
-                rect(i * (this.barWidth + this.spacing), 0, this.barWidth, this.scaledData(-this.data[i].value[j]));
-                translate(0, this.scaledData(-this.data[i].value[j]));
+                noStroke();
+                fill(255);
+                textSize(this.labelFontSize);
+                textAlign(RIGHT, BOTTOM);
+                text(this.data[i].label, i * (this.barWidth + this.spacing) + this.barWidth / 2, 25);
             }
-            pop();
         }
     }
 }

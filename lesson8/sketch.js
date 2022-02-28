@@ -9,10 +9,9 @@ let data = [
 ];
 
 let data2 = [
-    { value: 20, label: "Oranges" },
-    { value: 30, label: "Apples" },
-    { value: 10, label: "Bananas" },
-    { value: 40, label: "Pears" }
+    { value: [40, 10, 20], label: "Oranges" },
+    { value: [20, 10, 80], label: "Oranges" },
+    { value: [40, 10, 10], label: "Oranges" },
 ];
 
 let data3 = [
@@ -57,8 +56,3 @@ function draw() {
     barChart04.posX = 550;
     barChart04.posY = 900;
 }
-let total = 0;
-for (let i = 0; i < data.length; i++) {
-    total += data2[i].value;
-}
-console.log(total);
