@@ -1,10 +1,13 @@
 class HorizontalBarChart {
     constructor(_data) {
         this.data = _data;
-        this.posX = 50;
+        this.chartTitle = "";
+        this.chartXLabel = "";
+        this.chartYLabel = "";
+        this.posX = 0;
         this.posY = 450;
         this.valueFontSize = 12;
-        this.labelFontSize = 14;
+        this.labelFontSize = 10;
         this.tickWeight = 1;
         this.numTicks = 10;
         this.tickLength = 5;
@@ -12,7 +15,7 @@ class HorizontalBarChart {
         this.spacing = 15;
         this.chartWidth = 400;
         this.chartHeight = 400;
-        this.showLabels = true;
+        this.showLabels = false;
         this.rotateLabels = true;
         this.showValues = true;
         this.remainingSpace;
@@ -24,9 +27,28 @@ class HorizontalBarChart {
     }
     drawTitle() {
         textSize(18);
+        textAlign(CENTER, CENTER);
         noStroke();
         fill(255);
-        text("Chart Title", this.chartWidth / 2, -this.chartHeight - 15);
+        text(this.chartTitle, this.chartWidth / 2 - this.margin, -this.chartHeight - this.margin);
+    }
+    drawXLabel() {
+        textSize(18);
+        textAlign(CENTER, CENTER);
+        noStroke();
+        fill(255);
+        text(this.chartXLabel, this.chartWidth / 2 - this.margin, 40);
+    }
+    drawYLabel() {
+        textSize(18);
+        textAlign(CENTER, CENTER);
+        noStroke();
+        fill(255);
+        push();
+        translate(-this.margin * 2 - 20, -this.chartHeight / 2);
+        rotate(PI / 2);
+        text(this.chartYLabel, 0, 0);
+        pop();
     }
     updateVals() {
         this.remainingSpace = this.chartHeight - (this.margin * 2) - (this.spacing * (this.data.length - 1));
@@ -40,6 +62,8 @@ class HorizontalBarChart {
         push();
         translate(this.posX, this.posY);
         this.drawTitle();
+        this.drawXLabel();
+        this.drawYLabel();
         this.drawAxis();
         this.drawTicks();
         this.drawBars();
@@ -103,9 +127,9 @@ class HorizontalBarChart {
                     noStroke();
                     fill(255);
                     textSize(this.labelFontSize);
-                    textAlign(CENTER, BOTTOM);
+                    textAlign(CENTER, CENTER);
                     translate(-20, -((this.barHeight + this.spacing) * i) + -this.barHeight / 2);
-                    rotate(PI / 2);
+                    // rotate(PI / 2);
                     text(this.data[i].label, 0, 0);
                     pop();
                 } else {

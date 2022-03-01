@@ -1,6 +1,9 @@
-class BarChart {
-    constructor(_data) {
+class ScatterPlotChart {
+    constructor(_data, ) {
         this.data = _data;
+        this.chartTitle = "";
+        this.chartXLabel = "";
+        this.chartYLabel = "";
         this.posX = 50;
         this.posY = 450;
         this.valueFontSize = 12;
@@ -8,6 +11,7 @@ class BarChart {
         this.tickWeight = 1;
         this.showLabels = true;
         this.showValues = true;
+        this.rotateLabels = true;
         this.margin = 30;
         this.spacing = 15;
         this.chartWidth = 400;
@@ -26,7 +30,25 @@ class BarChart {
         textAlign(CENTER, CENTER);
         noStroke();
         fill(255);
-        text("Chart Title", this.chartWidth / 2, -this.chartHeight - 25);
+        text(this.chartTitle, this.chartWidth / 2 - this.margin, -this.chartHeight - this.margin);
+    }
+    drawXLabel() {
+        textSize(18);
+        textAlign(CENTER, CENTER);
+        noStroke();
+        fill(255);
+        text(this.chartXLabel, this.chartWidth / 2 - this.margin, this.margin * 2);
+    }
+    drawYLabel() {
+        textSize(18);
+        textAlign(CENTER, CENTER);
+        noStroke();
+        fill(255);
+        push();
+        translate(-this.margin * 2 - 20, -this.chartHeight / 2);
+        rotate(PI / 2);
+        text(this.chartYLabel, 0, 0);
+        pop();
     }
     updateVals() {
         this.remainingSpace = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
@@ -40,10 +62,13 @@ class BarChart {
         push();
         translate(this.posX, this.posY);
         this.drawTitle();
-        this.drawTicks();
-        this.drawBars();
+        this.drawXLabel();
+        this.drawYLabel();
         this.drawAxis();
+        this.drawTicks();
+        this.drawEllipse();
         pop();
+
     }
 
     drawTicks() {
@@ -81,35 +106,32 @@ class BarChart {
         return newValue;
     }
 
-    drawBars() {
+    drawEllipse() {
         translate(this.margin, 0);
-
         for (let i = 0; i < this.data.length; i++) {
             fill(colors[i % colors.length]);
-            strokeWeight(0);
-            rect(i * (this.barWidth + this.spacing), 0, this.barWidth, this.scaledData(-this.data[i].value));
+            ellipse(-i * (-this.barWidth - this.spacing), this.scaledData(-this.data[i].value), 20);
 
-            if (this.showValues) {
-                noStroke();
-                fill(255);
-                textSize(this.valueFontSize);
-                textAlign(CENTER, BOTTOM);
-                text(this.data[i].value, i * (this.barWidth + this.spacing) + this.barWidth / 2, this.scaledData(-this.data[i].value) - 3);
-            }
 
             if (this.showLabels) {
-                noStroke();
-                fill(255);
-                textSize(this.labelFontSize);
-                textAlign(CENTER, BOTTOM);
-                text(this.data[i].label, i * (this.barWidth + this.spacing) + this.barWidth / 2, 25);
-            } else {
+                if (this.rotateLabels) {
+                    push();
+                    noStroke();
+                    fill(255);
+                    textSize(this.labelFontSize);
+                    textAlign(CENTER, CENTER);
+                    translate(-i * (-this.barWidth - this.spacing), 20);
+                    rotate(PI / 2);
+                    text(this.data[i].wins, 0, 0);
+                    pop();
+                } else {
 
-                noStroke();
-                fill(255);
-                textSize(this.labelFontSize);
-                textAlign(RIGHT, BOTTOM);
-                text(this.data[i].label, i * (this.barWidth + this.spacing) + this.barWidth / 2, 25);
+                    noStroke();
+                    fill(255);
+                    textSize(this.labelFontSize);
+                    textAlign(RIGHT, BOTTOM);
+                    text(this.data[i].wins, 0, i * (this.barHeight + this.spacing) + this.barHeight / 2);
+                }
             }
         }
     }
