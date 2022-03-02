@@ -1,9 +1,9 @@
 class ScatterPlotChart {
-    constructor(_data, ) {
+    constructor(_data, _chartTitle, _chartXLabel, _chartYLabel) {
         this.data = _data;
-        this.chartTitle = "";
-        this.chartXLabel = "";
-        this.chartYLabel = "";
+        this.chartTitle = _chartTitle;
+        this.chartXLabel = _chartXLabel;
+        this.chartYLabel = _chartYLabel;
         this.posX = 50;
         this.posY = 450;
         this.valueFontSize = 12;
@@ -106,13 +106,23 @@ class ScatterPlotChart {
         return newValue;
     }
 
+    ellipseScale(_val) {
+        let ellipseVal = map(_val, 1, 222, 10, 50);
+        return ellipseVal;
+    }
+
     drawEllipse() {
         translate(this.margin, 0);
         for (let i = 0; i < this.data.length; i++) {
             fill(colors[i % colors.length]);
-            ellipse(-i * (-this.barWidth - this.spacing), this.scaledData(-this.data[i].value), 20);
-
-
+            ellipse(-i * (-this.barWidth - this.spacing), this.scaledData(-this.data[i].value), this.ellipseScale(this.data[i].value2));
+            if (this.showValues) {
+                noStroke();
+                fill(255);
+                textSize(this.valueFontSize);
+                textAlign(CENTER, BOTTOM);
+                text(this.data[i].wins, i * (this.barWidth + this.spacing) + this.barWidth / 2, this.spacing + 5);
+            }
             if (this.showLabels) {
                 if (this.rotateLabels) {
                     push();
@@ -120,9 +130,9 @@ class ScatterPlotChart {
                     fill(255);
                     textSize(this.labelFontSize);
                     textAlign(CENTER, CENTER);
-                    translate(-i * (-this.barWidth - this.spacing), 20);
+                    translate(-i * (-this.barWidth - this.spacing) - this.spacing, this.scaledData(-this.data[i].value));
                     rotate(PI / 2);
-                    text(this.data[i].wins, 0, 0);
+                    text(this.data[i].label, 0, 0);
                     pop();
                 } else {
 
@@ -130,7 +140,7 @@ class ScatterPlotChart {
                     fill(255);
                     textSize(this.labelFontSize);
                     textAlign(RIGHT, BOTTOM);
-                    text(this.data[i].wins, 0, i * (this.barHeight + this.spacing) + this.barHeight / 2);
+                    text(this.data[i].label, 0, i * (this.barHeight + this.spacing) + this.barHeight / 2);
                 }
             }
         }

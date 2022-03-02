@@ -1,9 +1,9 @@
 class HorizontalBarChart {
-    constructor(_data) {
+    constructor(_data, _chartTitle, _chartXLabel, chartYLabel) {
         this.data = _data;
-        this.chartTitle = "";
-        this.chartXLabel = "";
-        this.chartYLabel = "";
+        this.chartTitle = _chartTitle;
+        this.chartXLabel = _chartXLabel;
+        this.chartYLabel = chartYLabel;
         this.posX = 0;
         this.posY = 450;
         this.valueFontSize = 12;
@@ -12,10 +12,10 @@ class HorizontalBarChart {
         this.numTicks = 10;
         this.tickLength = 5;
         this.margin = 30;
-        this.spacing = 15;
+        this.spacing = 20;
         this.chartWidth = 400;
         this.chartHeight = 400;
-        this.showLabels = false;
+        this.showLabels = true;
         this.rotateLabels = true;
         this.showValues = true;
         this.remainingSpace;
@@ -128,7 +128,7 @@ class HorizontalBarChart {
                     fill(255);
                     textSize(this.labelFontSize);
                     textAlign(CENTER, CENTER);
-                    translate(-20, -((this.barHeight + this.spacing) * i) + -this.barHeight / 2);
+                    translate(-35, -((this.barHeight + this.spacing) * i) + -this.barHeight / 2);
                     // rotate(PI / 2);
                     text(this.data[i].label, 0, 0);
                     pop();

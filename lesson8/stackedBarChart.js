@@ -1,15 +1,15 @@
 class StackedBarChart {
-    constructor(_data) {
+    constructor(_data, _chartTitle, _chartXLabel, chartYLabel) {
         this.data = _data;
-        this.chartTitle = "";
-        this.chartXLabel = "";
-        this.chartYLabel = "";
+        this.chartTitle = _chartTitle;
+        this.chartXLabel = _chartXLabel;
+        this.chartYLabel = chartYLabel;
         this.posX = 50;
         this.posY = 450;
         this.valueFontSize = 12;
         this.labelFontSize = 14;
         this.tickWeight = 1;
-        this.showLabels = false;
+        this.showLabels = true;
         this.showValues = true;
         this.rotateLabels = true;
         this.margin = 30;
@@ -131,7 +131,7 @@ class StackedBarChart {
                     fill(255);
                     textSize(this.labelFontSize);
                     textAlign(CENTER, CENTER);
-                    translate(i * (this.barWidth + this.spacing), 20);
+                    translate(i * (this.barWidth + this.spacing), 60);
                     rotate(PI / 2);
                     text(this.data[i].label, 0, 0);
                     pop();

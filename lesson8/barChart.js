@@ -1,9 +1,9 @@
 class BarChart {
-    constructor(_data) {
+    constructor(_data, _chartTitle, _chartXLabel, chartYLabel) {
         this.data = _data;
-        this.chartTitle = "";
-        this.chartXLabel = "";
-        this.chartYLabel = "";
+        this.chartTitle = _chartTitle;
+        this.chartXLabel = _chartXLabel;
+        this.chartYLabel = chartYLabel;
         this.posX = 50;
         this.posY = 450;
         this.valueFontSize = 12;
