@@ -120,10 +120,6 @@ class StackedBarChart {
     drawBars() {
         translate(this.margin, 0);
         for (let i = 0; i < this.data.length; i++) {
-
-
-
-
             if (this.showLabels) {
                 if (this.rotateLabels) {
                     push();

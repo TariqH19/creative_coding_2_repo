@@ -95,6 +95,8 @@ let data4 = [
 ];
 
 let colors;
+let title;
+let text1 = "The dataset I chose was based on the stats of the 2020/2021 season of the premier league. This is one of the most competitive leagues across all sports in the world and I wanted to see what it takes to be the best in the league. The dataset I looked at analyzed the goals scored, the goals conceded, the games won, and the amount of money spent by teams in that season. This gives a clear story of what teams are performing and what teams aren’t performing to standard, it also shows what a team needs to win the league.";
 let barChart01;
 let barChart02;
 let barChart03;
@@ -102,7 +104,7 @@ let barChart04;
 let barChart05;
 
 function setup() {
-    createCanvas(1520, 1300);
+    createCanvas(1600, 1600);
 
     colors = [color('#F3646A'), color('#F68F6A'), color('#FAB666'), color('#FFE066')];
     barChart01 = new ScatterPlotChart(data4, "Goals scored vs goals conceded in the 20/21 season", "Goals conceded", "Goals scored");
@@ -115,20 +117,29 @@ function setup() {
 function draw() {
     background(50);
     scale(1);
+    fill(255);
+    textSize(20);
+    textAlign(LEFT, CENTER);
+    text("What it takes to win a premier league", 30, 40);
+    textSize(12);
+    textAlign(LEFT, CENTER);
+    text(text1, 30, -130, 550, 500);
     barChart01.render();
     barChart01.updateVals();
     barChart01.posX = 120;
+    barChart01.posY = 700;
     barChart02.render();
     barChart02.updateVals();
     barChart02.posX = 800;
+    barChart02.posY = 700;
     barChart03.render();
     barChart03.updateVals();
     barChart03.posX = 120;
-    barChart03.posY = 1100;
+    barChart03.posY = 1350;
     barChart04.render();
     barChart04.updateVals();
     barChart04.posX = 800;
-    barChart04.posY = 1100;
+    barChart04.posY = 1350;
 
 }
 

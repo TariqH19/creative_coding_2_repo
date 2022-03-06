@@ -5,7 +5,7 @@ class ScatterPlotChart {
         this.chartXLabel = _chartXLabel;
         this.chartYLabel = _chartYLabel;
         this.posX = 50;
-        this.posY = 450;
+        this.posY = 550;
         this.valueFontSize = 12;
         this.labelFontSize = 14;
         this.tickWeight = 1;
@@ -30,7 +30,7 @@ class ScatterPlotChart {
         textAlign(CENTER, CENTER);
         noStroke();
         fill(255);
-        text(this.chartTitle, this.chartWidth / 2 - this.margin, -this.chartHeight - this.margin);
+        text(this.chartTitle, this.chartWidth / 2 - this.margin, -this.chartHeight - this.margin * 2);
     }
     drawXLabel() {
         textSize(18);
