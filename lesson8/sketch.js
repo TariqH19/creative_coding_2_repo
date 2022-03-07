@@ -59,16 +59,16 @@ let data3 = [
     { value: 12, value2: 78, wins: 18, label: "Arsenal" },
     { value: 12, value2: 96, wins: 18, label: "Leeds UTD" },
     { value: 12, value2: 66, wins: 17, label: "" },
-    { value: 15, value2: 92, wins: 16, label: "Aston Villa FC" },
-    { value: 7, value2: 35, wins: 12, label: "Newcastle United FC" },
+    { value: 15, value2: 92, wins: 16, label: "Aston Villa" },
+    { value: 7, value2: 35, wins: 12, label: "Newcastle" },
     { value: 10, value2: 80, wins: 12, label: "" },
     { value: 8, value2: 20, wins: 12, label: "" },
     { value: 9, value2: 34, wins: 12, label: "" },
-    { value: 12, value2: 23, wins: 9, label: "Brighton & Hove Albion FC" },
+    { value: 12, value2: 23, wins: 9, label: "Brighton" },
     { value: 11, value2: 1, wins: 10, label: "" },
-    { value: 9, value2: 34, wins: 5, label: "Fulham FC" },
+    { value: 9, value2: 34, wins: 5, label: "Fulham" },
     { value: 6, value2: 38, wins: 5, label: "" },
-    { value: 5, value2: 57, wins: 7, label: "Sheffield United FC" },
+    { value: 5, value2: 57, wins: 7, label: "Sheffield United" },
 ];
 
 let data4 = [
@@ -81,15 +81,15 @@ let data4 = [
     { value: 68, value2: 100, wins: 45, label: "" },
     { value: 55, value2: 78, wins: 39, label: "Arsenal" },
     { value: 62, value2: 96, wins: 54, label: "" },
-    { value: 47, value2: 66, wins: 48, label: "Everton FC" },
+    { value: 47, value2: 66, wins: 48, label: "Everton" },
     { value: 55, value2: 92, wins: 46, label: "" },
     { value: 46, value2: 35, wins: 62, label: "" },
     { value: 36, value2: 80, wins: 52, label: "" },
     { value: 41, value2: 20, wins: 66, label: "" },
     { value: 48, value2: 34, wins: 68, label: "" },
     { value: 41, value2: 23, wins: 46, label: "" },
-    { value: 33, value2: 1, wins: 55, label: "Burnley FC" },
-    { value: 27, value2: 34, wins: 55, label: "Fulham FC" },
+    { value: 33, value2: 1, wins: 55, label: "Burnley" },
+    { value: 27, value2: 34, wins: 55, label: "Fulham" },
     { value: 35, value2: 38, wins: 76, label: "" },
     { value: 20, value2: 57, wins: 63, label: "" },
 ];
@@ -104,7 +104,7 @@ let barChart04;
 let barChart05;
 
 function setup() {
-    createCanvas(1600, 1600);
+    createCanvas(1500, 1600);
 
     colors = [color('#F3646A'), color('#F68F6A'), color('#FAB666'), color('#FFE066')];
     barChart01 = new ScatterPlotChart(data4, "Goals scored vs goals conceded in the 20/21 season", "Goals conceded", "Goals scored");

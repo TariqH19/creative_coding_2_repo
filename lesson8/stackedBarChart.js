@@ -65,7 +65,7 @@ class StackedBarChart {
                 this.total[i] = prevValue + curValue);
 
         }
-        this.maxValue = max(sumOfValues);
+        //this.maxValue = max(sumOfValues);
         this.maxValue = max(this.total);
         //console.log(this.maxValue);
         //console.log(data)

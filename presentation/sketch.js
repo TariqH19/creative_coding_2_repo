@@ -38,11 +38,11 @@ let data2 = [
     { value: [34, 28], label: "" },
     { value: [33, 35], label: "" },
     { value: [20, 26], label: "" },
-    { value: [19, 14], label: "Burnley FC" },
-    { value: [21, 20], label: "Crystal Palace FC" },
+    { value: [19, 14], label: "Burnley" },
+    { value: [21, 20], label: "Crystal Palace" },
     { value: [18, 22], label: "" },
     { value: [15, 21], label: "" },
-    { value: [18, 9], label: "Fulham FC" },
+    { value: [18, 9], label: "Fulham" },
     { value: [19, 28], label: "Southampton" },
     { value: [20, 15], label: "" },
     { value: [8, 12], label: "" }
@@ -59,14 +59,14 @@ let data3 = [
     { value: 11, value2: 53, wins: 20, label: "" },
     { value: 12, value2: 78, wins: 18, label: "Arsenal" },
     { value: 9, value2: 34, wins: 12, label: "" },
-    { value: 15, value2: 92, wins: 16, label: "Aston Villa FC" },
+    { value: 15, value2: 92, wins: 16, label: "Aston Villa" },
     { value: 10, value2: 80, wins: 12, label: "" },
-    { value: 7, value2: 35, wins: 12, label: "Newcastle United FC" },
+    { value: 7, value2: 35, wins: 12, label: "Newcastle United" },
     { value: 8, value2: 20, wins: 12, label: "" },
     { value: 12, value2: 66, wins: 17, label: "" },
-    { value: 12, value2: 23, wins: 9, label: "Brighton & Hove Albion FC" },
+    { value: 12, value2: 23, wins: 9, label: "Brighton & Hove Albion" },
     { value: 11, value2: 1, wins: 10, label: "" },
-    { value: 5, value2: 57, wins: 7, label: "Sheffield United FC" },
+    { value: 5, value2: 57, wins: 7, label: "Sheffield United" },
     { value: 6, value2: 38, wins: 5, label: "" },
     { value: 9, value2: 34, wins: 5, label: "Fulham FC" }
 ];
@@ -86,12 +86,12 @@ let data4 = [
     { value: 36, value2: 80, wins: 52, label: "" },
     { value: 46, value2: 35, wins: 62, label: "" },
     { value: 41, value2: 20, wins: 66, label: "" },
-    { value: 47, value2: 66, wins: 48, label: "Everton FC" },
+    { value: 47, value2: 66, wins: 48, label: "Everton" },
     { value: 41, value2: 23, wins: 46, label: "" },
-    { value: 33, value2: 1, wins: 55, label: "Burnley FC" },
+    { value: 33, value2: 1, wins: 55, label: "Burnley" },
     { value: 20, value2: 57, wins: 63, label: "" },
     { value: 35, value2: 38, wins: 76, label: "" },
-    { value: 27, value2: 34, wins: 55, label: "Fulham FC" }
+    { value: 27, value2: 34, wins: 55, label: "Fulham" }
 ];
 
 let colors;
