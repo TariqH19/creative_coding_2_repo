@@ -13,7 +13,7 @@ class StackedBarChart {
         this.showValues = true;
         this.rotateLabels = true;
         this.margin = 30;
-        this.spacing = 15;
+        this.spacing = 5;
         this.chartWidth = 400;
         this.chartHeight = 400;
         this.numTicks = 10;
@@ -38,7 +38,7 @@ class StackedBarChart {
         textAlign(CENTER, CENTER);
         noStroke();
         fill(255);
-        text(this.chartXLabel, this.chartWidth / 2 - this.margin, 40);
+        text(this.chartXLabel, this.chartWidth / 2 - this.margin, 140);
     }
     drawYLabel() {
         textSize(18);
@@ -126,8 +126,8 @@ class StackedBarChart {
                     noStroke();
                     fill(255);
                     textSize(this.labelFontSize);
-                    textAlign(CENTER, CENTER);
-                    translate(i * (this.barWidth + this.spacing), 60);
+                    textAlign(LEFT, CENTER);
+                    translate(i * (this.barWidth + this.spacing) + 5, this.spacing);
                     rotate(PI / 2);
                     text(this.data[i].label, 0, 0);
                     pop();

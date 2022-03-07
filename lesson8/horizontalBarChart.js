@@ -12,7 +12,7 @@ class HorizontalBarChart {
         this.numTicks = 10;
         this.tickLength = 5;
         this.margin = 30;
-        this.spacing = 20;
+        this.spacing = 5;
         this.chartWidth = 400;
         this.chartHeight = 400;
         this.showLabels = true;
@@ -45,7 +45,7 @@ class HorizontalBarChart {
         noStroke();
         fill(255);
         push();
-        translate(-this.margin * 2 - 20, -this.chartHeight / 2);
+        translate(-this.margin * 2 - 40, -this.chartHeight / 2);
         rotate(PI / 2);
         text(this.chartYLabel, 0, 0);
         pop();
@@ -117,7 +117,7 @@ class HorizontalBarChart {
                 noStroke();
                 fill(255);
                 textSize(this.valueFontSize);
-                textAlign(LEFT, TOP);
+                textAlign(LEFT, CENTER);
                 text(this.data[i].value, this.scaledData(this.data[i].value) + 5, -i * (this.barHeight + this.spacing) + -this.barHeight / 2);
             }
 
@@ -127,8 +127,8 @@ class HorizontalBarChart {
                     noStroke();
                     fill(255);
                     textSize(this.labelFontSize);
-                    textAlign(CENTER, CENTER);
-                    translate(-35, -((this.barHeight + this.spacing) * i) + -this.barHeight / 2);
+                    textAlign(LEFT, CENTER);
+                    translate(-75, -((this.barHeight + this.spacing) * i) + -this.barHeight / 2);
                     // rotate(PI / 2);
                     text(this.data[i].label, 0, 0);
                     pop();

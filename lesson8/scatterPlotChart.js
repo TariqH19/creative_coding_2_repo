@@ -6,8 +6,8 @@ class ScatterPlotChart {
         this.chartYLabel = _chartYLabel;
         this.posX = 50;
         this.posY = 550;
-        this.valueFontSize = 12;
-        this.labelFontSize = 14;
+        this.valueFontSize = 10;
+        this.labelFontSize = 12;
         this.tickWeight = 1;
         this.showLabels = true;
         this.showValues = true;
@@ -37,7 +37,7 @@ class ScatterPlotChart {
         textAlign(CENTER, CENTER);
         noStroke();
         fill(255);
-        text(this.chartXLabel, this.chartWidth / 2 - this.margin, this.margin * 3);
+        text(this.chartXLabel, this.chartWidth / 2 - this.margin, 120);
     }
     drawYLabel() {
         textSize(18);
@@ -53,11 +53,13 @@ class ScatterPlotChart {
     updateVals() {
         this.remainingSpace = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
         this.barWidth = this.remainingSpace / this.data.length;
-        this.xLoc = this.chartWidth / this.data.length;
         this.tickSpace = this.chartHeight / this.numTicks;
-        let listValues = this.data.map(function(x) { return x.value });
+        let listValues = this.data.map(function(y) { return y.value });
         this.maxValue = max(listValues);
+        let listValues2 = this.data.map(function(x) { return x.wins });
+        this.maxValue2 = max(listValues2);
         this.tickIncrement = int(this.maxValue / this.numTicks);
+        this.tickIncrement2 = int(this.maxValue2 / 20);
     }
     render() {
         push();
@@ -67,8 +69,19 @@ class ScatterPlotChart {
         this.drawYLabel();
         this.drawAxis();
         this.drawTicks();
+        this.xDrawTicks();
         this.drawEllipse();
         pop();
+    }
+
+    scaledData2(_num) {
+        let newValue2 = map(_num, 0, this.maxValue2, 0, this.chartWidth);
+        return newValue2;
+    }
+
+    scaledData(_num) {
+        let newValue = map(_num, 0, this.maxValue, 0, this.chartHeight);
+        return newValue;
     }
 
     drawTicks() {
@@ -89,6 +102,18 @@ class ScatterPlotChart {
         }
     }
 
+    xDrawTicks() {
+        textSize(this.valueFontSize);
+        textAlign(RIGHT, CENTER);
+        for (let i = 0; i < 28; i++) {
+
+
+            noStroke();
+            fill(255, 100);
+            text(i * this.tickIncrement2, i * this.spacing, this.spacing);
+        }
+    }
+
     drawAxis() {
         translate(-this.margin, 0)
             //y Axis
@@ -101,43 +126,41 @@ class ScatterPlotChart {
         line(0, 0, this.chartWidth, 0);
     }
 
-    scaledData(_num) {
-        let newValue = map(_num, 0, this.maxValue, 0, this.chartHeight);
-        return newValue;
-    }
 
     ellipseScale(_val) {
-        let ellipseVal = map(_val, 1, 222, 10, 50);
+        let ellipseVal = map(_val, 1, 222, 5, 35);
         return ellipseVal;
     }
 
     drawEllipse() {
-        translate(this.margin, 0);
+        translate(0, 0);
         for (let i = 0; i < this.data.length; i++) {
             fill(colors[i % colors.length]);
 
-            ellipse((this.data[i].wins), this.scaledData(-this.data[i].value), this.ellipseScale(this.data[i].value2));
-            if (this.showValues) {
+            ellipse(this.scaledData2(this.data[i].wins), this.scaledData(-this.data[i].value), this.ellipseScale(this.data[i].value2));
+            if (this.showLabels) {
                 push();
                 noStroke();
                 fill(255);
-                textSize(this.valueFontSize);
-                textAlign(CENTER, BOTTOM);
-                translate(i * (this.barWidth + this.spacing) + this.barWidth / 2, 45);
-                rotate(PI / 2)
-                text(this.data[i].label, 0, 0);
+                textSize(this.labelFontSize);
+                textAlign(LEFT, CENTER);
+                translate(i * (this.barWidth + this.spacing) + this.barWidth / 2, 10);
+
+                //text(this.scaledData2(this.data[i].wins), 0, 0);
                 pop();
             }
-            if (this.showLabels) {
+            if (this.showValues) {
                 if (this.rotateLabels) {
                     push();
                     noStroke();
-                    fill(0);
+                    fill(255);
                     textSize(this.labelFontSize);
                     textAlign(CENTER, CENTER);
-                    translate(this.data[i].wins, this.scaledData(-this.data[i].value));
+                    translate(this.scaledData2(this.data[i].wins) - 40, this.scaledData(-this.data[i].value));
+                    if (this.data[i].value2 > 70) {
+                        text(this.data[i].label, 0, 0);
+                    }
 
-                    text(this.data[i].wins, 0, 0);
                     pop();
                 } else {
 
